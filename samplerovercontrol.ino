@@ -24,7 +24,7 @@
 #define LeftIn3 41 
 #define LeftIn4 43 
 
-char val = 0;
+int val = 0;
 
 void setup() {
   //Allow serial control
@@ -52,31 +52,27 @@ void loop() {
     Serial.println(val);
   
     //Direction control
-    if (val == 'w') //Forward
+    if (240 <= val < 360) //Forward
     {
       drive(255,255);
     }
-    else if (val == 's') //Backward
-    {
-      drive(-255,-255);
-    }
-    else if (val == 'a') //Left
+    else if (120 <= val < 240) //Left
     {
       drive(127,255);
     }
-    else if (val == 'd') //Right
+    else if (360 <= val < 480) //Right
     {
       drive(255,127);
     }
-    else if (val == 'z') //More left
+    else if (0 <= val < 120) //More left
     {
       drive(0,255);
     }
-    else if (val == 'c') //More right
+    else if (480 <= val <= 600) //More right
     {
       drive(255,0);
     }
-    else if (val == 'k') //Stop
+    else if (val < 0 || val > 600) //Stop; error
     {
       drive(0,0);
     }
